@@ -80,12 +80,12 @@ const singleStorySchema: Schema = {
 };
 
 const getAIClient = () => {
-  // Use VITE_API_KEY for Vercel/Vite environment
-  // The /// <reference types="vite/client" /> at the top fixes the TS error
+  // ATENÇÃO: import.meta.env é específico do Vite. 
+  // A linha /// <reference types="vite/client" /> no topo é obrigatória para evitar erro de build.
   const apiKey = import.meta.env.VITE_API_KEY; 
   
   if (!apiKey) {
-    throw new Error("API Key not found. Please check your Vercel Environment Variables (VITE_API_KEY).");
+    throw new Error("API Key not found. Please check your environment variables (VITE_API_KEY).");
   }
   return new GoogleGenAI({ apiKey });
 };
