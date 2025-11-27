@@ -87,7 +87,7 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer className="relative z-10 py-8 text-center text-slate-600 text-xs font-mono">
-        SYSTEM VERSION 3.3 // POWERED BY GEMINI 3 PRO // SECURE CONNECTION ESTABLISHED
+        SYSTEM VERSION 3.3 // POWERED BY GEMINI 2.5 FLASH // SECURE CONNECTION ESTABLISHED
       </footer>
     </div>
   );
