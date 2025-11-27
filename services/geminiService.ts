@@ -79,12 +79,7 @@ const singleStorySchema: Schema = {
 };
 
 const getAIClient = () => {
-  // ATENÇÃO: Mudamos de process.env para import.meta.env para funcionar no Vite/Vercel
-  const apiKey = import.meta.env.VITE_API_KEY; 
-  if (!apiKey) {
-    throw new Error("API Key not found in environment variables.");
-  }
-  return new GoogleGenAI({ apiKey });
+  return new GoogleGenAI({ apiKey: process.env.API_KEY });
 };
 
 export const analyzeStories = async (rawText: string): Promise<AnalysisResponse> => {
