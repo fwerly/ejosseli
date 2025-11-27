@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { AnalysisResponse, FunctionType, ProjectType, StoryAnalysis } from "../types";
 
@@ -79,7 +80,14 @@ const singleStorySchema: Schema = {
 };
 
 const getAIClient = () => {
-  return new GoogleGenAI({ apiKey: process.env.API_KEY });
+  // Use VITE_API_KEY for Vercel/Vite environment
+  // The /// <reference types="vite/client" /> at the top fixes the TS error
+  const apiKey = import.meta.env.VITE_API_KEY; 
+  
+  if (!apiKey) {
+    throw new Error("API Key not found. Please check your Vercel Environment Variables (VITE_API_KEY).");
+  }
+  return new GoogleGenAI({ apiKey });
 };
 
 export const analyzeStories = async (rawText: string): Promise<AnalysisResponse> => {
