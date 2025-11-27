@@ -94,7 +94,7 @@ export const analyzeStories = async (rawText: string): Promise<AnalysisResponse>
   const ai = getAIClient();
 
   const systemInstruction = `
-    You are a Senior Function Point Analysis (FPA) Specialist using Gemini 3 technology.
+    You are a Senior Function Point Analysis (FPA) Specialist using Gemini 2.5 Flash technology.
     Your task is to analyze a list of raw User Stories / Tasks from a software project and classify them with HIGH PRECISION.
 
     **INPUT:** Raw text list of stories.
@@ -124,7 +124,7 @@ export const analyzeStories = async (rawText: string): Promise<AnalysisResponse>
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-pro-preview",
+      model: "gemini-2.5-flash",
       contents: rawText,
       config: {
         systemInstruction: systemInstruction,
@@ -185,7 +185,7 @@ export const reanalyzeStoryWithContext = async (story: StoryAnalysis, contextTex
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-3-pro-preview",
+    model: "gemini-2.5-flash",
     contents: prompt,
     config: {
       responseMimeType: "application/json",
